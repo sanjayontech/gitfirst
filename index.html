@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gitfirst — Find your first open-source contribution</title>
+  <meta name="description" content="Discover beginner-friendly open-source issues. gitfirst curates good first issues from popular projects to help you make your first contribution." />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/gfi-logo-white.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/gfi-logo-white.png" />
+  <link rel="apple-touch-icon" href="./assets/gfi-logo-white.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="brand" id="brand-link">
+        <img src="./assets/gfi-logo-white.png" alt="gitfirst" class="brand-logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-link active" id="nav-home">Home</a>
+        <a href="#about" class="nav-link" id="nav-about">About</a>
+        <a href="https://github.com/sanjayontech/gitfirst" target="_blank" rel="noopener noreferrer" class="nav-link">
+          GitHub
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" id="filter-bar">
+    <!-- Language pills row -->
+    <div class="filter-row lang-row">
+      <div class="inner">
+        <span class="row-label">Language</span>
+        <div class="lang-scroll" id="lang-pills"></div>
+      </div>
+    </div>
+
+    <!-- Sort + filter controls row -->
+    <div class="filter-row controls-row">
+      <div class="inner">
+
+        <!-- Sort dropdown -->
+        <div class="dd" id="sort-dd">
+          <button class="dd-trigger" id="sort-trigger">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h8m-8 6h3"/></svg>
+            Sort: <span id="sort-label">Newest</span>
+            <svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dd-menu" id="sort-menu">
+            <button class="dd-item active" data-sort="newest">🕐 Newest</button>
+            <button class="dd-item" data-sort="comments-desc">💬 Most Comments</button>
+            <button class="dd-item" data-sort="stars-desc">★ Stars ↓</button>
+            <button class="dd-item" data-sort="stars-asc">★ Stars ↑</button>
+            <button class="dd-item" data-sort="alpha">A → Z</button>
+          </div>
+        </div>
+
+        <!-- Filter dropdown -->
+        <div class="dd" id="filter-dd">
+          <button class="dd-trigger" id="filter-trigger">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            Filters
+            <span class="filter-badge hidden" id="filter-badge">0</span>
+            <svg class="chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dd-menu filter-panel" id="filter-menu">
+
+            <div class="fpanel-group">
+              <div class="fpanel-label">Min Stars</div>
+              <div class="foptions">
+                <button class="fopt active" data-filter="stars" data-value="0">Any</button>
+                <button class="fopt" data-filter="stars" data-value="100">100+</button>
+                <button class="fopt" data-filter="stars" data-value="1000">1K+</button>
+                <button class="fopt" data-filter="stars" data-value="10000">10K+</button>
+                <button class="fopt" data-filter="stars" data-value="50000">50K+</button>
+              </div>
+            </div>
+
+            <div class="fpanel-group">
+              <div class="fpanel-label">Issue Age</div>
+              <div class="foptions">
+                <button class="fopt active" data-filter="days" data-value="0">Any time</button>
+                <button class="fopt" data-filter="days" data-value="7">Past week</button>
+                <button class="fopt" data-filter="days" data-value="30">Past month</button>
+                <button class="fopt" data-filter="days" data-value="180">Past 6 months</button>
+                <button class="fopt" data-filter="days" data-value="365">Past year</button>
+              </div>
+            </div>
+
+            <div class="fpanel-group">
+              <div class="fpanel-label">Min Comments</div>
+              <div class="foptions">
+                <button class="fopt active" data-filter="comments" data-value="0">Any</button>
+                <button class="fopt" data-filter="comments" data-value="1">1+</button>
+                <button class="fopt" data-filter="comments" data-value="3">3+</button>
+                <button class="fopt" data-filter="comments" data-value="10">10+</button>
+              </div>
+            </div>
+
+            <div class="fpanel-divider"></div>
+
+            <div class="fpanel-group">
+              <div class="fpanel-label">Assignment</div>
+              <div class="foptions">
+                <button class="fopt active" data-filter="assigned" data-value="">Any</button>
+                <button class="fopt" data-filter="assigned" data-value="unassigned">Unassigned</button>
+                <button class="fopt" data-filter="assigned" data-value="assigned">Assigned</button>
+              </div>
+            </div>
+
+            <div class="fpanel-group">
+              <div class="fpanel-label">Label</div>
+              <div class="foptions">
+                <button class="fopt active" data-filter="label" data-value="">Any</button>
+                <button class="fopt" data-filter="label" data-value="good first issue">Good First Issue</button>
+                <button class="fopt" data-filter="label" data-value="help wanted">Help Wanted</button>
+                <button class="fopt" data-filter="label" data-value="beginner">Beginner</button>
+                <button class="fopt" data-filter="label" data-value="hacktoberfest">Hacktoberfest</button>
+                <button class="fopt" data-filter="label" data-value="easy">Easy</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <button class="reset-btn" id="reset-btn">Reset all</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HOME VIEW -->
+    <div id="home-view">
+      <div class="results-bar">
+        <span id="results-count"></span>
+        <span id="active-chips"></span>
+      </div>
+      <div id="repo-list">
+        <div class="skeletons">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT VIEW -->
+    <div id="about-view" class="hidden">
+      <div class="about-wrap">
+
+        <div class="about-hero">
+          <h1>About <span class="purple">gitfirst</span></h1>
+          <p>Making your first open-source contribution easier than ever.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-icon">🎯</div>
+            <h3>What is gitfirst?</h3>
+            <p>A curated feed of <em>good first issues</em> — tasks labeled as beginner-friendly by maintainers of popular open-source repositories.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">⚙️</div>
+            <h3>How it works</h3>
+            <p>A Python pipeline fetches open issues with beginner labels from a curated list of GitHub repos and generates the data shown here.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-icon">🏷️</div>
+            <h3>Labels tracked</h3>
+            <p>good first issue · beginner · beginner-friendly · easy · first-timers-only · starter · help wanted · low-hanging-fruit</p>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

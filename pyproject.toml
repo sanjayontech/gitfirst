@@ -1,0 +1,36 @@
+[project]
+name = "gitfirst"
+version = "0.1.0"
+description = "Curated beginner-friendly open-source issues from across GitHub"
+license = "MIT"
+authors = [
+    {name = "gitfirst"}
+]
+requires-python = ">=3.9"
+dependencies = [
+    "github3.py>=4.0.1",
+    "toml>=0.10.2",
+    "numerize>=0.12",
+    "emoji>=0.6.0",
+    "requests>=2.23.0",
+    "python-slugify>=4.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.8",
+    "types-toml>=0.10.8.7",
+    "types-python-slugify>=8.0.0.3",
+    "loguru>=0.7.2",
+    "mypy>=1.7.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["gfi"]
+
+[tool.ruff]
+line-length = 120
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
